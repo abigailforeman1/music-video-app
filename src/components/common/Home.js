@@ -6,7 +6,7 @@ class Home extends React.Component {
     return (
       <div className='main-wrapper'>
         <h1>MUSIC VIDEOS!</h1>
-        <Link to='/search'>
+        <Link to='/videos'>
           <button>SEARCH FOR VIDEOS</button>
         </Link>
       </div>

@@ -1,14 +1,30 @@
 import React from 'react'
 import { getMusicVideo } from '../../lib/api'
 
+import VideoCard from '../videos/VideoCard'
+
 class Search extends React.Component {
   state = {
     query: '',
-    searchTerm: ''
+    searchTerms: [],
+    results: null
   }
 
   handleChange = e => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  handleClick = e => {
+    if (e.target.checked) {
+      const newSearch = e.target.value
+      const searchTerms = [...this.state.searchTerms, newSearch]
+      this.setState({ searchTerms: searchTerms })
+    } else {
+      const index = this.state.searchTerms.indexOf(e.target.value)
+      const searchTerms = [...this.state.searchTerms]
+      searchTerms.splice(index, 1)
+      this.setState({ searchTerms: searchTerms })
+    }
   }
 
   handleSubmit = async e => {
@@ -17,13 +33,14 @@ class Search extends React.Component {
     try {
       const res = await getMusicVideo(this.state)
       console.log(res.data)
+      this.setState({ results: res.data.results })
     } catch (err) {
-      console.log(err.response)
+      this.props.history.push('./error')
     }
   }
 
   render () {
-    console.log('state is', this.state)
+    console.log('state is', this.state.results)
     return (
       <div className='main-wrapper'>
         <h1>Search!</h1>
@@ -39,43 +56,46 @@ class Search extends React.Component {
           <h1>Search by</h1>
 
           <input
-            type='radio'
+            type='checkbox'
             id='artist'
-            name='searchTerm'
+            name='searchTerms'
             value='artist'
-            onChange={this.handleChange}
+            onChange={this.handleClick}
+            checked={this.checked}
           />
           <label htmlFor='artist'>Artist</label>
 
           <input
-            type='radio'
-            id='genre'
-            name='searchTerm'
-            value='genre'
-            onChange={this.handleChange}
-          />
-          <label htmlFor='genre'>Genre</label>
-
-          <input
-            type='radio'
+            type='checkbox'
             id='song'
-            name='searchTerm'
+            name='searchTerms'
             value='song'
-            onChange={this.handleChange}
+            onChange={this.handleClick}
+            checked={this.checked}
           />
           <label htmlFor='song'>Song</label>
 
           <input
-            type='radio'
+            type='checkbox'
             id='album'
-            name='searchTerm'
+            name='searchTerms'
             value='album'
-            onChange={this.handleChange}
+            onChange={this.handleClick}
+            checked={this.checked}
           />
           <label htmlFor='album'>Album</label>
 
           <button type='submit'>FIND VIDEOS</button>
         </form>
+
+        {this.state.results &&
+        this.state.results.map(video => {
+          return (
+            <VideoCard key={video.trackId} {...video} />
+          )
+        })
+        }
+
       </div>
     )
   }
