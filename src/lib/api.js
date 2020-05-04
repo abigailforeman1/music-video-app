@@ -21,7 +21,3 @@ export const getSingleVideo = videoId => {
   return axios.get(`${baseUrl}lookup?id=${videoId}`)
 }
 
-export const getLikedVideos = likedVideosDisplay => {
-  console.log(likedVideosDisplay)
-}
-

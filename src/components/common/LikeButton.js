@@ -1,12 +1,11 @@
 import React from 'react'
 
-const likedVideos = []
+const likedVideosArray = []
 
-const LikeButton = videoId => {
+const LikeButton = likedVideos => {
   const addLike = () => {
-    likedVideos.push(videoId.videoId)
-    console.log(likedVideos)
-    localStorage.setItem('likedVideos', JSON.stringify(likedVideos))
+    likedVideosArray.push(likedVideos.likedVideos)
+    localStorage.setItem('likedVideos', JSON.stringify(likedVideosArray))
   }
   return (
     <button onClick={addLike}>LIKE BUTTON</button>

@@ -25,7 +25,7 @@ class VideoShow extends React.Component {
     return (
       <>
         <LikeButton
-          videoId={video.trackId}
+          likedVideos={video}
         />
 
         <h1>{video.trackName}</h1>

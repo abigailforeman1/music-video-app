@@ -1,41 +1,34 @@
 import React from 'react'
-import { getSingleVideo } from '../../lib/api'
+import { Link } from 'react-router-dom'
 
-class LikedVideos extends React.Component {
-  state = {
-    likedVideos: null
-  }
+const LikedVideos = () => {
+  const JSONlikedVideos = localStorage.getItem('likedVideos')
+  const likedVideos = JSON.parse(JSONlikedVideos)
 
+  if (!likedVideos) return <h1>NO FAVE VIDS!</h1>
 
-  async componentDidMount () {
-    try {
+  return (
+    <>
+      <h1>FAVE VIDEOS!</h1>
 
-      const JSONlikedVideos = localStorage.getItem('likedVideos')
-      const likedVideosDisplay = JSON.parse(JSONlikedVideos)
-      // console.log(likedVideosDisplay)
-      // console.log(likedVideosDisplay[0].videoId.trackId)
-
-      likedVideosDisplay.map(video => {
-        console.log(video)
-        const res = getSingleVideo(video)
-        console.log(res)
-      })
-
-      // const res = await getSingleVideo(likedVideosDisplay)
-      // console.log(res.data.results)
-      // this.setState({ likedVideos: res.data.results })
-    } catch (err) {
-      this.props.history.push('./error')
-    }
-  }
-
-  render () {
-    if (!this.state.likedVideos) return null
-    // console.log(this.state.likedVideos)
-    return (
-      <h1>LIKED VIDEOS</h1>
-    )
-  }
+      {likedVideos &&
+        likedVideos.map((video, i) => {
+          return (
+            <div key={i}>
+              <Link to={`/videos/${video.trackId}`}>
+                <div className='video-card-wrapper'>
+                  <h1>{video.trackName}</h1>
+                  <img
+                    src={video.artworkUrl100}
+                    alt={video.kind}
+                  />
+                </div>
+              </Link>
+            </div>
+          )
+        })}
+    </>
+  )
 }
 
 export default LikedVideos
