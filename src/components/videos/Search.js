@@ -41,7 +41,7 @@ class Search extends React.Component {
   render () {
     return (
       <div className='main-wrapper'>
-        <h1>Search!</h1>
+        <h1 className='search-title'>Search For Music</h1>
 
         <SearchForm
           handleChange={this.handleChange}
@@ -51,8 +51,8 @@ class Search extends React.Component {
         />
 
         {this.state.results &&
-          this.state.results.map(video => {
-            return <VideoCard key={video.trackId} {...video} />
+          this.state.results.map((video, index) => {
+            return <VideoCard key={video.trackId} {...video} count={index} />
           })}
       </div>
     )

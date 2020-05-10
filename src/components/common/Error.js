@@ -1,7 +1,9 @@
 import React from 'react'
 
 const ErrorPage = () => (
-  <h1>ERROR!</h1>
+  <div className="main-wrapper">
+    <h1>ERROR!</h1>
+  </div>
 )
 
 export default ErrorPage

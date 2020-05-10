@@ -2,47 +2,60 @@ import React from 'react'
 
 const SearchForm = ({ handleSubmit, handleChange, handleClick, checked }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        className='search-form'
-        placeholder='Start your search'
-        name='query'
-        onChange={handleChange}
-      />
+    <form className='form-wrapper' onSubmit={handleSubmit}>
+      <div className="searchbar-wrapper">
+        <input
+          className='search-form'
+          placeholder='TYPE HERE'
+          name='query'
+          onChange={handleChange}
+          id='search-bar'
+        />
+      </div>
 
-      <h1>Search by</h1>
+      {/* <h1 className="search-by">search by:</h1> */}
 
-      <input
-        type='checkbox'
-        id='artist'
-        name='searchTerms'
-        value='artist'
-        onChange={handleClick}
-        checked={checked}
-      />
-      <label htmlFor='artist'>Artist</label>
+      <div className='checkbox-wrapper'>
+        <div className='checkbox'>
+          <input
+            type='checkbox'
+            id='artist'
+            name='searchTerms'
+            value='artist'
+            onChange={handleClick}
+            checked={checked}
+          />
+          <label htmlFor='artist'>ARTIST</label>
+        </div>
 
-      <input
-        type='checkbox'
-        id='song'
-        name='searchTerms'
-        value='song'
-        onChange={handleClick}
-        checked={checked}
-      />
-      <label htmlFor='song'>Song</label>
+        <div className='checkbox'>
+          <input
+            type='checkbox'
+            id='song'
+            name='searchTerms'
+            value='song'
+            onChange={handleClick}
+            checked={checked}
+          />
+          <label htmlFor='song'>SONG</label>
+        </div>
 
-      <input
-        type='checkbox'
-        id='album'
-        name='searchTerms'
-        value='album'
-        onChange={handleClick}
-        checked={checked}
-      />
-      <label htmlFor='album'>Album</label>
+        <div className='checkbox'>
+          <input
+            type='checkbox'
+            id='album'
+            name='searchTerms'
+            value='album'
+            onChange={handleClick}
+            checked={checked}
+          />
+          <label htmlFor='album'>ALBUM</label>
+        </div>
+      </div>
 
-      <button type='submit'>FIND VIDEOS</button>
+      <div>
+        <button type='submit'>SEARCH</button>
+      </div>
     </form>
   )
 }

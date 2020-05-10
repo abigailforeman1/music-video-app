@@ -1,18 +1,33 @@
 import React from 'react'
 import { getSingleVideo } from '../../lib/api'
+import { getMusicVideo } from '../../lib/api'
+import ReactAudioPlayer from 'react-audio-player'
 
+import VideoCard from '../videos/VideoCard'
 import LikeButton from '../common/LikeButton'
 
 class VideoShow extends React.Component {
   state = {
-    video: null
+    video: null,
+    query: '',
+    seeMore: []
   }
 
   async componentDidMount () {
     try {
       const videoId = this.props.match.params.id
       const res = await getSingleVideo(videoId)
-      this.setState({ video: res.data.results[0] })
+      this.setState({ video: res.data.results[0], query: res.data.results[0].artistName })
+    } catch (err) {
+      this.props.history.push('./error')
+    }
+  }
+
+  handleClick = async e => {
+    e.preventDefault()
+    try {
+      const res = await getMusicVideo(this.state)
+      this.setState({ seeMore: res.data.results })
     } catch (err) {
       this.props.history.push('./error')
     }
@@ -20,26 +35,50 @@ class VideoShow extends React.Component {
 
   render () {
     const video = this.state.video
+    const seeMore = this.state.seeMore
+
     if (!this.state.video) return null
+
     const newReleaseTime = video.releaseDate.slice(0, 10)
+
     return (
-      <>
-        <LikeButton
-          likedVideos={video}
-        />
+      <div className='videoshow-main'>
+        <div className='videoshow-wrapper'>
+          <h1 className='show-title'><span className='background'>Title</span> {video.trackName}</h1>
+          <p className='show-title'><span className='background'>Artist</span> {video.artistName}</p>
+          <p className='show-title'><span className='background'>Country</span> {video.country}</p>
+          <p className='show-title'><span className='background'>Genre</span> {video.primaryGenreName}</p>
+          <p className='show-title'><span className='background'>Release</span> {newReleaseTime}</p>
 
-        <h1>{video.trackName}</h1>
-        <h2>{video.artistName}</h2>
-        <p>{video.collectionName}</p>
-        <p>{video.country}</p>
-        <p>{video.primaryGenreName}</p>
-        <p>{newReleaseTime}</p>
+          {/* <img src={video.artworkUrl100} alt={video.artistName} /> */}
 
-        <a href={video.previewUrl} target='_blank' rel='noopener noreferrer'>
-          <button>watch preview</button>
-        </a>
-        <img src={video.artworkUrl100} alt={video.artistName} />
-      </>
+          <div className='controls-wrapper'>
+
+            <ReactAudioPlayer
+              src={video.previewUrl}
+              autoPlay={false}
+              controls={true}
+              style={{ width: '300px' }}
+            />
+
+            <a className='video-preview-button' href={video.previewUrl} target='_blank' rel='noopener noreferrer'>
+              <button>WATCH MUSIC VIDEO</button>
+            </a>
+  
+            <LikeButton
+              likedVideos={video}
+              className='likebutton'
+            />
+  
+            <button className='seemore' onClick={this.handleClick}>SEE MORE FROM {video.artistName}</button>
+          </div>
+  
+          {seeMore && 
+            seeMore.map((video, index) => {
+              return <VideoCard key={video.trackId} {...video} count={index} />
+            })}
+        </div>
+      </div>
     )
   }
 }

@@ -1,4 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Geo&family=Karla:ital,wght@1,700&family=Playfair+Display&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+$title: 'Karla', sans-serif;
+$body: 'Geo', sans-serif;
+$header: 'Playfair Display', serif;
+$offblack: rgb(32, 32, 32);
+$offwhite: rgb(250, 250, 250);
+$blue: rgb(38, 96, 255);
+
+body {
+  background-color: $offblack;
+  font-family: $title;
+  color: $offwhite;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 5px;
+  border-bottom: 2.5px solid #2b3a4c;
+  margin: 0px;
+  background-color: $offblack;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-item:hover {
+  color: $blue;
+}
+
+.nav-item {
+  list-style: none;
+  font-size: 30px;
+  color: $offwhite;
+  padding: 10px;
+}
+
+button {
+  padding: 6px;
+  margin: 10px;
+  font-size: 20px;
+  color: $blue;
+  font-family: $title;
+}
+
+button:hover {
+  background-color: $blue;
+  color: $offwhite;
+}
+
+.controls-wrapper {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 30px;
+}
+
+.search-title {
+  font-size: 100px;
+}
+
+.show-title {
+  font-size: 80px;
+  margin: 20px;
+}
+
+.main-wrapper {
+  text-align: center;
+  margin: 200px 0 50px 0;
+}
+
+.videoshow-wrapper {
+  margin: 100px 50px 50px 50px;
+}
+
+.background {
+  background-color: $offwhite;
+  color: $offblack;
+}
+
+.search-by {
+  letter-spacing: 3px;
+}
+
+.form-wrapper {
+  margin-bottom: 80px;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 0 25px 25px 25px;
+}
+
+.checkbox {
+  margin: 15px;
+}
+
+label {
+  margin: 6px;
+  font-size: 20px;
+}
+
+#search-bar {
+  padding: 6px;
+  width: 50%;
+  margin: 25px;
+  font-size: 20px;
+  color: $blue;
+  background-color: $offwhite;
+  font-family: $title;
+  text-align: center;
+}
+
+.video-card-main {
+  display: flex;
+  margin: 5px;
+  border: solid 1px orange;
+  color: $offwhite;
+}
+
+.video-card-main:hover {
+  background-color: $offwhite;
+  color: $offblack;
+}
 
 .video-card-wrapper {
-  border: solid 1px black;
+  padding: 10px;
+  font-size: 20px;
+  font-family: $title;
+  font-weight: normal;
+}
+
+.number {
+  width: 10%;
+}
+
+.track {
+  width: 35%;
+}
+
+.artist {
+  width: 35%;
+}
+
+.genre {
+  width: 10%;
+}
+
+.country {
+  width: 10%;
+}
+
+img {
+  height: 150px;
+}
+
+.like-main-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.like-wrapper {
+  border: 1px solid $offwhite;
+  padding: 15px;
+  margin: 30px;
+  flex-wrap: wrap;
+}
+
+.like-wrapper:hover {
+  background-color: $blue;
+}
+
+.liked-title {
+  font-size: 35px;
+  color: $offwhite;
+  margin: 20px;
 }

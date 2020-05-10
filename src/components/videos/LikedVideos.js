@@ -2,32 +2,37 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const LikedVideos = () => {
-  const JSONlikedVideos = localStorage.getItem('likedVideos')
-  const likedVideos = JSON.parse(JSONlikedVideos)
+  const likedVideos = JSON.parse(localStorage.getItem('likedVideos'))
+  console.log('first console log', likedVideos)
+  // const likedVideos = JSON.parse(JSONlikedVideos)
+  // console.log('got from local storage', likedVideos)
 
-  if (!likedVideos) return <h1>NO FAVE VIDS!</h1>
+  if (!likedVideos) return (
+    <div className='main-wrapper'>
+      <h1 className='search-title'>NO FAVE VIDS!</h1>
+    </div>
+  )
 
   return (
-    <>
-      <h1>FAVE VIDEOS!</h1>
-
-      {likedVideos &&
+    <div className='main-wrapper'>
+      <h1 className='search-title'>Fave Videos</h1>
+      <div className='like-main-wrapper'>
+        {likedVideos &&
         likedVideos.map((video, i) => {
           return (
-            <div key={i}>
-              <Link to={`/videos/${video.trackId}`}>
-                <div className='video-card-wrapper'>
-                  <h1>{video.trackName}</h1>
-                  <img
-                    src={video.artworkUrl100}
-                    alt={video.kind}
-                  />
-                </div>
+            <div className='like-wrapper' key={i}>
+              <Link to={`/${video.trackId}`} style={{ textDecoration: 'none' }}>
+                <h1 className='liked-title'>{video.trackName}</h1>
+                <img
+                  src={video.artworkUrl100}
+                  alt={video.kind}
+                />
               </Link>
             </div>
           )
         })}
-    </>
+      </div>
+    </div>
   )
 }
 

@@ -1,7 +1,9 @@
 import React from 'react'
 
 const Loading = () => {
-  <h1>LOADING!</h1>
+  <div className='main-wrapper'>
+    <h1 className='main-title'>LOADING!</h1>
+  </div>
 }
 
 export default Loading
