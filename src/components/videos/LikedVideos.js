@@ -9,13 +9,13 @@ const LikedVideos = () => {
 
   if (!likedVideos) return (
     <div className='main-wrapper'>
-      <h1 className='search-title'>NO FAVE VIDS!</h1>
+      <h1 className='search-title'>NO FAVE TUNES!</h1>
     </div>
   )
 
   return (
     <div className='main-wrapper'>
-      <h1 className='search-title'>Fave Videos</h1>
+      <h1 className='search-title'>Fave Tunes</h1>
       <div className='like-main-wrapper'>
         {likedVideos &&
         likedVideos.map((video, i) => {
