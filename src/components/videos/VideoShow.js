@@ -6,18 +6,27 @@ import ReactAudioPlayer from 'react-audio-player'
 import VideoCard from '../videos/VideoCard'
 import LikeButton from '../common/LikeButton'
 
+const ig = require('instagram-scraping')
+
 class VideoShow extends React.Component {
   state = {
     video: null,
     query: '',
-    seeMore: []
+    seeMore: [],
+    instagram: []
   }
 
   async componentDidMount () {
     try {
       const videoId = this.props.match.params.id
       const res = await getSingleVideo(videoId)
-      this.setState({ video: res.data.results[0], query: res.data.results[0].artistName })
+      const insta = []
+
+      ig.scrapeTag(res.data.results[0].artistName).then(result => {
+        insta.push(result)
+      })
+
+      this.setState({ video: res.data.results[0], query: res.data.results[0].artistName, instagram: insta })
     } catch (err) {
       this.props.history.push('./error')
     }
@@ -38,6 +47,8 @@ class VideoShow extends React.Component {
     const seeMore = this.state.seeMore
 
     if (!this.state.video) return null
+
+    console.log(this.state.instagram)
 
     const newReleaseTime = video.releaseDate.slice(0, 10)
 
@@ -77,6 +88,14 @@ class VideoShow extends React.Component {
             seeMore.map((video, index) => {
               return <VideoCard key={video.trackId} {...video} count={index} />
             })}
+
+          {/* {this.state.instagram &&
+            this.state.instagram.map(post => {
+              return (
+
+              )
+            })
+          } */}
         </div>
       </div>
     )
