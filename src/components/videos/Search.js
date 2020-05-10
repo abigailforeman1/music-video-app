@@ -41,7 +41,9 @@ class Search extends React.Component {
   render () {
     return (
       <div className='main-wrapper'>
-        <h1 className='search-title'>Search For Music</h1>
+        { // eslint-disable-next-line react/no-unescaped-entities 
+          <h1 className='search-title'>WHAT'S THAT SONG?</h1>
+        }
 
         <SearchForm
           handleChange={this.handleChange}
