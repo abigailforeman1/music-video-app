@@ -56,6 +56,11 @@ button:hover {
   color: $offwhite;
 }
 
+button:disabled {
+  background-color: grey;
+  color: $blue;
+}
+
 .controls-wrapper {
   display: flex;
   text-align: center;

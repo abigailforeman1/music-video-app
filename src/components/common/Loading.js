@@ -1,9 +1,8 @@
 import React from 'react'
 
-const Loading = () => {
-  <div className='main-wrapper'>
-    <h1 className='main-title'>LOADING!</h1>
-  </div>
+const Spinner = () => {
+  return <Loader type="Oval" color="#00BFFF" height={80} width={80} />
+
 }
 
-export default Loading
+export default Spinner

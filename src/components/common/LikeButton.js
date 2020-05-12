@@ -1,15 +1,18 @@
 import React from 'react'
+import { toast } from '../../lib/Notifications'
 
 const likedVideosArray = []
 
 const LikeButton = likedVideos => {
-  const addLike = () => {
+  const addLike = (e) => {
+    toast('Added to faves')
     likedVideosArray.push(likedVideos.likedVideos)
     localStorage.setItem('likedVideos', JSON.stringify(likedVideosArray))
-    console.log('setted in local storage', likedVideosArray)
+    e.target.disabled = true
+    // console.log('setted in local storage', likedVideosArray)
   }
   return (
-    <button className='like-button' onClick={addLike}>ADD TO FAVES</button>
+    <button className='like-button' onClick={addLike} disabled={false}>ADD TO FAVES</button>
   )
 }
 

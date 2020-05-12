@@ -1,7 +1,8 @@
 import React from 'react'
 import { getMusicVideo } from '../../lib/api'
 
-import VideoCard from '../videos/VideoCard'
+// import Loading from '../common/Loading'
+import VideoCard from './VideoCard'
 import SearchForm from './SearchForm'
 
 class Search extends React.Component {
@@ -39,6 +40,8 @@ class Search extends React.Component {
   }
 
   render () {
+
+
     return (
       <div className='main-wrapper'>
         { // eslint-disable-next-line react/no-unescaped-entities 
@@ -51,6 +54,10 @@ class Search extends React.Component {
           handleSubmit={this.handleSubmit}
           checked={this.checked}
         />
+
+        {/* (!this.state.results) return <Loading /> */}
+
+        {/* <Loading /> */}
 
         {this.state.results &&
           this.state.results.map((video, index) => {

@@ -69,7 +69,7 @@ class VideoShow extends React.Component {
               src={video.previewUrl}
               autoPlay={false}
               controls={true}
-              style={{ width: '300px' }}
+              style={{ width: '250px' }}
             />
 
             <a className='video-preview-button' href={video.previewUrl} target='_blank' rel='noopener noreferrer'>
