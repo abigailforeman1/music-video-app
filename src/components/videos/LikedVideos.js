@@ -5,7 +5,6 @@ import Loading from '../common/Loading'
 
 const LikedVideos = () => {
   const likedVideos = JSON.parse(localStorage.getItem('likedVideos'))
-  console.log('first console log', likedVideos)
   // const likedVideos = JSON.parse(JSONlikedVideos)
   // console.log('got from local storage', likedVideos)
 

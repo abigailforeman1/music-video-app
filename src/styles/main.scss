@@ -169,6 +169,15 @@ img {
   height: 150px;
 }
 
+.map {
+  display: flex;
+  justify-content: center;
+}
+
+.map-marker {
+  font-size: 10px;
+}
+
 .like-main-wrapper {
   display: flex;
   justify-content: center;
