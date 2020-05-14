@@ -3,6 +3,8 @@ import { getSingleVideo, getMapBoxCoords, getMusicVideo } from '../../lib/api'
 import ReactAudioPlayer from 'react-audio-player'
 import MapGl, { Marker } from 'react-map-gl'
 import 'mapbox-gl/dist/mapbox-gl.css'
+// import cx from 'classnames'
+import { CSSTransition } from 'react-transition-group'
 
 import VideoCard from '../videos/VideoCard'
 import LikeButton from '../common/LikeButton'
@@ -132,12 +134,21 @@ class VideoShow extends React.Component {
 
           <br />
 
-          <section id='seemoreid'>
-            {seeMore &&
-              seeMore.map((video, index) => {
-                return <VideoCard key={video.trackId} {...video} count={index} />
-              })}
-          </section>
+          <CSSTransition
+            in={this.state.display}
+            timeout={350}
+            classNames='display'
+            unmountOnExit
+          >
+            <section id='seemoreid'>
+              {seeMore &&
+                seeMore.map((video, index) => {
+                  return (
+                    <VideoCard key={video.trackId} {...video} count={index} />
+                  )
+                })}
+            </section>
+          </CSSTransition>
         </div>
       </div>
     )

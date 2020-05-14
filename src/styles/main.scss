@@ -118,10 +118,6 @@ button:disabled {
   padding: 0 15px;
 }
 
-.search-by {
-  letter-spacing: 3px;
-}
-
 .form-wrapper {
   margin-bottom: 80px;
 }
@@ -136,20 +132,31 @@ button:disabled {
   margin: 15px;
 }
 
-label {
+.search-by {
+  background-color: $blue;
+  color: $offwhite;
+  padding: 3px;
+  margin: 15px;
+}
+
+label, .search-by {
   margin: 6px;
   font-size: 20px;
 }
 
 #search-bar {
-  padding: 6px;
+  padding: 8px;
   width: 50%;
-  margin: 25px;
+  margin: 35px;
   font-size: 20px;
   color: $blue;
   background-color: $offwhite;
   font-family: $title;
   text-align: center;
+}
+
+.search-button {
+  font-size: 25px;
 }
 
 .video-card-main {

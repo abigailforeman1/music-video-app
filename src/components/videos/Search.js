@@ -1,7 +1,7 @@
 import React from 'react'
 import { getMusicVideo } from '../../lib/api'
 
-// import Loading from '../common/Loading'
+import Loading from '../common/Loading'
 import VideoCard from './VideoCard'
 import SearchForm from './SearchForm'
 
@@ -55,9 +55,9 @@ class Search extends React.Component {
           checked={this.checked}
         />
 
-        {/* (!this.state.results) return <Loading /> */}
-
-        {/* <Loading /> */}
+        {this.state.results &&
+        <Loading />
+        }
 
         {this.state.results &&
           this.state.results.map((video, index) => {

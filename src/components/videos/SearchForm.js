@@ -13,9 +13,12 @@ const SearchForm = ({ handleSubmit, handleChange, handleClick, checked }) => {
         />
       </div>
 
-      {/* <h1 className="search-by">search by:</h1> */}
+      <div className='checkbox'>
+        <label className="search-by">SEARCH MORE SPECIFIC?</label>
+      </div>
 
       <div className='checkbox-wrapper'>
+
         <div className='checkbox'>
           <input
             type='checkbox'
@@ -54,7 +57,7 @@ const SearchForm = ({ handleSubmit, handleChange, handleClick, checked }) => {
       </div>
 
       <div>
-        <button type='submit'>SEARCH</button>
+        <button className='search-button' type='submit'>SEARCH</button>
       </div>
     </form>
   )
