@@ -36,19 +36,9 @@ class VideoShow extends React.Component {
     }
   }
 
-  // async checkAlreadyFave () {
-    // const likedVideos = JSON.parse(localStorage.getItem('likedVideos'))
-    // console.log(likedVideos)
-
-    // likedVideos.filter((video, videoId) => {
-    //   videoId = parseInt(this.props.match.params.id)
-    //   console.log(video.trackId === videoId)
-    //   return video.trackId === videoId
-    // })
-  // }
-
   handleClick = async e => {
     e.preventDefault()
+
     try {
       const res = await getMusicVideo(this.state)
       this.setState({ seeMore: res.data.results })
@@ -58,26 +48,46 @@ class VideoShow extends React.Component {
   }
 
   render () {
-
     const video = this.state.video
     const seeMore = this.state.seeMore
     const likedVideos = this.state.likedVideos
     if (!this.state.video || !this.state.latitude) return null
     const newReleaseTime = video.releaseDate.slice(0, 10)
 
-    console.log('fave track id', likedVideos.filter(video => video.trackId))
-    console.log('current id', this.props.match.params.id)
-    console.log('is this song already in fave?', likedVideos.some(video => video.trackId === parseInt(this.props.match.params.id)))
-
     return (
       <div className='videoshow-main'>
         <div className='videoshow-wrapper'>
+          <div className='img-button-wrapper'>
+            <div className='img-wrapper'>
+              <img src={video.artworkUrl100} alt={video.artistName} />
+              <img src={video.artworkUrl100} alt={video.artistName} />
+              <img src={video.artworkUrl100} alt={video.artistName} />
+              {/* <img src={video.artworkUrl100} alt={video.artistName} /> */}
+            </div>
+            <div className='buttons-wrapper'>
+              <a
+                className='video-preview-button'
+                href={video.previewUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                <button className='preview-button'>WATCH VIDEO</button>
+              </a>
+
+              {/* if checkAlreadyFave() returns true you want to hide the button, if it returns false you want to show the button */}
+              {!likedVideos.some(
+                video => video.trackId === parseInt(this.props.match.params.id)
+              ) && <LikeButton likedVideos={video} className='likebutton' />}
+
+              <button className='seemore' onClick={this.handleClick}>
+                {/* <a href="#seemoreid" className='seemore'> */}
+                MORE FROM {video.artistName.toUpperCase()}
+                {/* </a> */}
+              </button>
+            </div>
+          </div>
+          <br />
           <h1 className='show-title'>
-            <img src={video.artworkUrl100} alt={video.artistName} />
-            <img src={video.artworkUrl100} alt={video.artistName} />
-            <img src={video.artworkUrl100} alt={video.artistName} />
-            <img src={video.artworkUrl100} alt={video.artistName} />
-            <br />
             <span className='background'>Title</span> {video.trackName}
           </h1>
           <p className='show-title'>
@@ -97,30 +107,7 @@ class VideoShow extends React.Component {
               controls={true}
               style={{ width: '250px' }}
             />
-
-            <a
-              className='video-preview-button'
-              href={video.previewUrl}
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              <button>WATCH MUSIC VIDEO</button>
-            </a>
-
-            {/* if checkAlreadyFave() returns true you want to hide the button, if it returns false you want to show the button */}
-            {(!likedVideos.some(video => video.trackId === parseInt(this.props.match.params.id))) &&
-              <LikeButton likedVideos={video} className='likebutton' />
-            }
-
-            <button className='seemore' onClick={this.handleClick}>
-              SEE MORE FROM {video.artistName}
-            </button>
           </div>
-
-          {seeMore &&
-            seeMore.map((video, index) => {
-              return <VideoCard key={video.trackId} {...video} count={index} />
-            })}
 
           <div className='map'>
             <MapGl
@@ -142,6 +129,15 @@ class VideoShow extends React.Component {
               </Marker>
             </MapGl>
           </div>
+
+          <br />
+
+          <section id='seemoreid'>
+            {seeMore &&
+              seeMore.map((video, index) => {
+                return <VideoCard key={video.trackId} {...video} count={index} />
+              })}
+          </section>
         </div>
       </div>
     )

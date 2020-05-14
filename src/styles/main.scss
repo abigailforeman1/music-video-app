@@ -66,6 +66,32 @@ button:disabled {
   text-align: center;
   justify-content: center;
   margin: 30px;
+  // border: pink solid 1px;
+}
+
+.img-button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  // border: orange solid 1px;
+}
+
+.img-wrapper {
+  display: flex;
+  // border: red solid 1px;
+}
+
+.buttons-wrapper {
+  // border: pink solid 1px;
+  text-align: center;
+  align-self: center;
+  justify-content: center;
+}
+
+.preview-button, .like-button, .seemore {
+  display: block;
+  font-size: 22px;
+  text-decoration: underline;
+  // border: yellow solid 1px;
 }
 
 .search-title {
@@ -83,7 +109,7 @@ button:disabled {
 }
 
 .videoshow-wrapper {
-  margin: 100px 50px 50px 50px;
+  margin: 100px 30px 30px 50px;
 }
 
 .background {
